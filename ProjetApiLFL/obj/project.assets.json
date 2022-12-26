@@ -3101,11 +3101,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\The_C\\Desktop\\ProjetApiLFL\\ProjetApiLFL\\ProjetApiLFL.csproj",
+      "projectUniqueName": "C:\\Users\\The_C\\Desktop\\Projet C#\\ProjetApiLFL\\ProjetApiLFL\\ProjetApiLFL.csproj",
       "projectName": "ProjetApiLFL",
-      "projectPath": "C:\\Users\\The_C\\Desktop\\ProjetApiLFL\\ProjetApiLFL\\ProjetApiLFL.csproj",
+      "projectPath": "C:\\Users\\The_C\\Desktop\\Projet C#\\ProjetApiLFL\\ProjetApiLFL\\ProjetApiLFL.csproj",
       "packagesPath": "C:\\Users\\The_C\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\The_C\\Desktop\\ProjetApiLFL\\ProjetApiLFL\\obj\\",
+      "outputPath": "C:\\Users\\The_C\\Desktop\\Projet C#\\ProjetApiLFL\\ProjetApiLFL\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\The_C\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "HJKC2LV/U07Pq2frs60yeMaTE/Fr97nQ8wzFcLeewphKEz/T3J3e+j23Fz563JZR4Lo2tmaX0R7//6I3SJgGBA==",
+  "dgSpecHash": "a4B/n7SVEP2oRQY7zcG+I7HCstDV3HEbqgosIlTWdyD/NrT9zI3wVEUKRsvm6JOE5Yu2wIMCLJbLKAOSnQsUqw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\The_C\\Desktop\\ProjetApiLFL\\ProjetApiLFL\\ProjetApiLFL.csproj",
+  "projectFilePath": "C:\\Users\\The_C\\Desktop\\Projet C#\\ProjetApiLFL\\ProjetApiLFL\\ProjetApiLFL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\The_C\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\The_C\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.11\\microsoft.aspnetcore.authentication.jwtbearer.6.0.11.nupkg.sha512",
