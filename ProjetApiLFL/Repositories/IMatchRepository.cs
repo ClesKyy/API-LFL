@@ -1,4 +1,5 @@
-﻿using ProjetApiLFL.Models;
+﻿using ProjetApiLFL.Dtos.Match;
+using ProjetApiLFL.Models;
 
 namespace ProjetApiLFL.Repositories
 {
@@ -7,7 +8,7 @@ namespace ProjetApiLFL.Repositories
         Match GetMatchById(int id);
         List<Match> GetMatch();
         void CreateMatch(Match match);
-        void UpdateMatch(Match newMatch, int oldMatchId);
+        void UpdateMatch(UpdateMatchDto newMatch, int oldMatchId);
         void DeleteMatchById(int id);
     }
 }

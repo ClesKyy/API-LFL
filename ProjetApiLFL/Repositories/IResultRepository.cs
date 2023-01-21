@@ -1,4 +1,5 @@
-﻿using ProjetApiLFL.Models;
+﻿using ProjetApiLFL.Dtos.Result;
+using ProjetApiLFL.Models;
 
 namespace ProjetApiLFL.Repositories
 {
@@ -7,7 +8,7 @@ namespace ProjetApiLFL.Repositories
         Result GetResultById(int id);
         List<Result> GetResult();
         void CreateResult(Result result);
-        void UpdateResult(Result newResult, int oldResultId);
+        void UpdateResult(UpdateResultDto newResult, int oldResultId);
         void DeleteResultById(int id);
     }
 }

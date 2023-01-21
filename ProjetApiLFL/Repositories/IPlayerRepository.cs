@@ -1,4 +1,5 @@
-﻿using ProjetApiLFL.Models;
+﻿using ProjetApiLFL.Dtos.Player;
+using ProjetApiLFL.Models;
 
 namespace ProjetApiLFL.Repositories
 {
@@ -7,7 +8,7 @@ namespace ProjetApiLFL.Repositories
         Player GetPlayerById(int id);
         List<Player> GetPlayer();
         void CreatePlayer(Player player);
-        void UpdatePlayer(Player newPlayer, int oldPlayerId);
-        void DeletePlayerById(int id);
+        void UpdatePlayer(UpdatePlayerDto newPlayer, int oldPlayerId);
+        void DeletePlayer(int id);
     }
 }

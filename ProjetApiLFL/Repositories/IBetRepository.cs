@@ -1,4 +1,5 @@
-﻿using ProjetApiLFL.Models;
+﻿using ProjetApiLFL.Dtos.Bet;
+using ProjetApiLFL.Models;
 
 namespace ProjetApiLFL.Repositories
 {
@@ -7,7 +8,7 @@ namespace ProjetApiLFL.Repositories
         Bet GetBetById(int id);
         List<Bet> GetBet();
         void CreateBet(Bet bet);
-        void UpdateBet(Bet newBet, int oldBetId);
+        void UpdateBet(UpdateBetDto newBet, int oldBetId);
         void DeleteBetById(int id);
 
     }

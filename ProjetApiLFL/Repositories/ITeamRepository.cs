@@ -1,4 +1,5 @@
-﻿using ProjetApiLFL.Models;
+﻿using ProjetApiLFL.Dtos.Team;
+using ProjetApiLFL.Models;
 
 namespace ProjetApiLFL.Repositories
 {
@@ -7,7 +8,7 @@ namespace ProjetApiLFL.Repositories
         Result GetTeamById(int id);
         List<Team> GetTeam();
         void CreateTeam(Team team);
-        void UpdateTeam(Team newTeam, int oldTeamId);
+        void UpdateTeam(UpdateTeamDto newTeam, int oldTeamId);
         void DeleteTeamById(int id);
     }
 }
