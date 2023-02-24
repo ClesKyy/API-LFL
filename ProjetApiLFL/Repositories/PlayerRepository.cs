@@ -5,7 +5,7 @@ using ProjetApiLFL.Models;
 
 namespace ProjetApiLFL.Repositories
 {
-    public class PlayerRepository
+    public class PlayerRepository : IPlayerRepository
     {
         private readonly LFLDbContext _context;
         public PlayerRepository(LFLDbContext context)

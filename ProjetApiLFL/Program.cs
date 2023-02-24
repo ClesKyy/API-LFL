@@ -23,9 +23,9 @@ builder.Services.AddCors(option =>
 });
 builder.Services.AddIdentity<User, Role>(options =>
 {
-    options.Password.RequiredLength = 8;
+   /* options.Password.RequiredLength = 8;
     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(1d);
-    options.Lockout.MaxFailedAccessAttempts = 5;
+    options.Lockout.MaxFailedAccessAttempts = 5; */
 })
     .AddEntityFrameworkStores<LFLDbContext>()
     .AddDefaultTokenProviders();
@@ -38,7 +38,8 @@ var configuration = new ConfigurationBuilder()
 builder.Services.Configure<JwtSettings>(configuration.GetSection("Jwt"));
 var jwtSettings = configuration.GetSection("Jwt").Get<JwtSettings>();
 
-
+builder.Services.AddScoped<IPlayerRepository, PlayerRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 builder.Services.AddDbContext<LFLDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
