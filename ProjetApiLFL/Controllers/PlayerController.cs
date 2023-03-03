@@ -20,9 +20,10 @@ namespace ProjetApiLFL.Controllers
         {
             Player player = new Player
             {
-                Name = playerDto.Name,
+                TeamId = playerDto.TeamId,
                 Pseudo = playerDto.Pseudo,
                 Role = playerDto.Role,
+                ProfileImg = playerDto.ProfileImg,
             };
 
             _playerRepository.CreatePlayer(player);

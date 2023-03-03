@@ -28,7 +28,6 @@ namespace ProjetApiLFL.Repositories
         public void UpdatePlayer(UpdatePlayerDto newPlayer, int oldPlayerId)
         {
             Player player = GetPlayerById(oldPlayerId);
-            player.Name = newPlayer.Name;
             player.Pseudo = newPlayer.Pseudo;
             player.Role = newPlayer.Role; 
 

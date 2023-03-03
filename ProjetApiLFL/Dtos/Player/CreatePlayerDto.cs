@@ -2,8 +2,9 @@
 {
     public class CreatePlayerDto
     {
-        public string Name { get; set; }
+        public int TeamId { get; set; }
         public string Pseudo { get; set; }
         public string Role { get; set; }
+        public string ProfileImg { get; set; }
     }
 }

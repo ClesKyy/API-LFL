@@ -2,7 +2,7 @@
 {
     public class UpdateTeamDto
     {
-        public string Name { get; set; }
-        public string ScoreTotal { get; set; }
+        public int Win { get; set; }
+        public int Lose { get; set; }
     }
 }

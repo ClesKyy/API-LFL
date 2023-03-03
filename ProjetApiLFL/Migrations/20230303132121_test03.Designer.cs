@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjetApiLFL.DbContexts;
 
@@ -11,9 +12,10 @@ using ProjetApiLFL.DbContexts;
 namespace ProjetApiLFL.Migrations
 {
     [DbContext(typeof(LFLDbContext))]
-    partial class LFLDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230303132121_test03")]
+    partial class test03
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -178,6 +180,10 @@ namespace ProjetApiLFL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PlayerId"), 1L, 1);
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ProfileImg")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -259,19 +265,13 @@ namespace ProjetApiLFL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TeamId"), 1L, 1);
 
-                    b.Property<string>("Logo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Lose")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Win")
-                        .HasColumnType("int");
+                    b.Property<string>("ScoreTotal")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("TeamId");
 

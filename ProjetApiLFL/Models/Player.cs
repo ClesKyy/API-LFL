@@ -9,5 +9,7 @@ namespace ProjetApiLFL.Models
         [ForeignKey("TeamId")]
         public string Pseudo { get; set; }
         public string Role { get; set; }
+        public string ProfileImg { get; set; }
+
     }
 }
