@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjetApiLFL.DbContexts;
 
@@ -11,9 +12,10 @@ using ProjetApiLFL.DbContexts;
 namespace ProjetApiLFL.Migrations
 {
     [DbContext(typeof(LFLDbContext))]
-    partial class LFLDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230407123358_test1")]
+    partial class test1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

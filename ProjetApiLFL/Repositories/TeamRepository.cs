@@ -15,7 +15,16 @@ namespace ProjetApiLFL.Repositories
          public Team GetTeamById(int id)
         {
             return _context.Teams.Where(t => t.TeamId == id).FirstOrDefault();
-        } 
+        }
+        public Team GetTeamByName(string name)
+        {
+            return _context.Teams.Where(t => t.Name == name).FirstOrDefault();
+        }
+        public List<Player> GetAllByTeamName(string name)
+        {
+            var team = GetTeamByName(name);
+            return _context.Players.ToList();
+        }
         public void CreateTeam(Team team)
         {
             _context.Teams.Add(team);

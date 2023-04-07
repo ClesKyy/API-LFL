@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjetApiLFL.DbContexts;
 
@@ -11,9 +12,10 @@ using ProjetApiLFL.DbContexts;
 namespace ProjetApiLFL.Migrations
 {
     [DbContext(typeof(LFLDbContext))]
-    partial class LFLDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230318164315_addEmail")]
+    partial class addEmail
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -190,10 +192,6 @@ namespace ProjetApiLFL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("RoleIcon")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("TeamId")
                         .HasColumnType("int");
 
@@ -296,6 +294,7 @@ namespace ProjetApiLFL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 

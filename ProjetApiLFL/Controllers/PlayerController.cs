@@ -24,6 +24,7 @@ namespace ProjetApiLFL.Controllers
                 Pseudo = playerDto.Pseudo,
                 Role = playerDto.Role,
                 ProfileImg = playerDto.ProfileImg,
+                RoleIcon = playerDto.RoleIcon,
             };
 
             _playerRepository.CreatePlayer(player);
