@@ -144,3 +144,6 @@ C:\Users\The_C\Desktop\Projet C#\ProjetApiLFL\ProjetApiLFL\obj\Debug\net6.0\refi
 C:\Users\The_C\Desktop\Projet C#\ProjetApiLFL\ProjetApiLFL\obj\Debug\net6.0\ProjetApiLFL.pdb
 C:\Users\The_C\Desktop\Projet C#\ProjetApiLFL\ProjetApiLFL\obj\Debug\net6.0\ProjetApiLFL.genruntimeconfig.cache
 C:\Users\The_C\Desktop\Projet C#\ProjetApiLFL\ProjetApiLFL\obj\Debug\net6.0\ref\ProjetApiLFL.dll
+C:\Users\The_C\Desktop\Projet C#\ProjetApiLFL\ProjetApiLFL\bin\Debug\net6.0\FluentValidation.dll
+C:\Users\The_C\Desktop\Projet C#\ProjetApiLFL\ProjetApiLFL\bin\Debug\net6.0\FluentValidation.AspNetCore.dll
+C:\Users\The_C\Desktop\Projet C#\ProjetApiLFL\ProjetApiLFL\bin\Debug\net6.0\FluentValidation.DependencyInjectionExtensions.dll

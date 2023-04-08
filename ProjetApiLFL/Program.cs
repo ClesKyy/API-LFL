@@ -1,6 +1,8 @@
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ProjetApiLFL.DbContexts;
+using ProjetApiLFL.Dtos.User;
 using ProjetApiLFL.Models;
 using ProjetApiLFL.Repositories;
 using ProjetApiLFL.Settings;
@@ -8,6 +10,9 @@ using ProjetApiLFL.Settings;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddControllers()
+    .AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore)
+    .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<UserSignUpDtoValidator>());
 
 builder.Services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 builder.Services.AddEndpointsApiExplorer();
@@ -23,9 +28,12 @@ builder.Services.AddCors(option =>
 });
 builder.Services.AddIdentity<User, Role>(options =>
 {
-   /* options.Password.RequiredLength = 8;
-    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(1d);
-    options.Lockout.MaxFailedAccessAttempts = 5; */
+        options.Password.RequiredLength = 8;
+        options.Password.RequireDigit = true;
+        options.Password.RequireNonAlphanumeric = false;
+        options.Password.RequireUppercase = false; 
+        options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(1d);
+        options.Lockout.MaxFailedAccessAttempts = 5; 
 })
     .AddEntityFrameworkStores<LFLDbContext>()
     .AddDefaultTokenProviders();

@@ -9,6 +9,7 @@ using ProjetApiLFL.Settings;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using FluentValidation;
 
 namespace ProjetApiLFL.Controllers
 {
@@ -20,12 +21,14 @@ namespace ProjetApiLFL.Controllers
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<Role> _roleManager;
         private readonly IOptionsSnapshot<JwtSettings> _jwtSettings;
-        public AuthController(UserManager<User> userManager, RoleManager<Role> roleManager, IOptionsSnapshot<JwtSettings> jwtSettings, IUserRepository userRepository)
+        private readonly IValidator<UserSignUpDto> _validator;
+        public AuthController(UserManager<User> userManager, RoleManager<Role> roleManager, IOptionsSnapshot<JwtSettings> jwtSettings, IUserRepository userRepository, IValidator<UserSignUpDto> validator)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _jwtSettings = jwtSettings;
             _userRepository = userRepository;
+            _validator = validator;
         }
         [HttpGet]
         public ActionResult<IEnumerable<User>> GetUsers()
@@ -37,11 +40,17 @@ namespace ProjetApiLFL.Controllers
 
         public async Task<IActionResult> SignUp([FromBody] UserSignUpDto userSignUpDto)
         {
+            var validationResult = _validator.Validate(userSignUpDto);
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(validationResult.Errors);
+            }
             var user = new User
             {
                 Pseudo = userSignUpDto.Pseudo,
                 UserName = userSignUpDto.Pseudo,
                 Password = userSignUpDto.Password,
+                Email = userSignUpDto.Email,
                
             };
             var userCreateResult = await _userManager.CreateAsync(user, userSignUpDto.Password);
@@ -50,29 +59,12 @@ namespace ProjetApiLFL.Controllers
                 return Created(string.Empty, string.Empty);
             }
 
-            await _userManager.AddToRoleAsync(user, "User");
+           // await _userManager.AddToRoleAsync(user, "User");
 
             return Problem(userCreateResult.Errors.First().Description, null, 400);
         }
 
-        [HttpPost("Roles")]
-        public async Task<IActionResult> CreateRole([FromBody] string roleName)
-        {
-            if (string.IsNullOrWhiteSpace(roleName))
-            {
-                return BadRequest("Le role doit avoir un nom");
-            }
-            var newRole = new Role
-            {
-                Name = roleName
-            };
-            var roleResult = await _roleManager.CreateAsync(newRole);
-            if (roleResult.Succeeded)
-            {
-                return Ok();
-            }
-            return Problem(roleResult.Errors.First().Description, null, 500);
-        }
+
 
 
         [HttpPost("login")]
