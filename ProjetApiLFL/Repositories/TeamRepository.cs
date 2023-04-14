@@ -29,7 +29,14 @@ namespace ProjetApiLFL.Repositories
         {
             _context.Teams.Add(team);
             _context.SaveChanges();
-        } 
+        }
+
+        public void CreateManyTeams(List<Team> teams)
+        {
+            _context.Teams.AddRange(teams);
+            _context.SaveChanges();
+        }
+
         public List<Team> GetTeam()
         {
             return _context.Teams.ToList();

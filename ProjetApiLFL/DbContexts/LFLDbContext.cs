@@ -16,5 +16,22 @@ namespace ProjetApiLFL.DbContexts
         public DbSet<Result> Results { get; set; }
         public DbSet<Team> Teams { get; set; } 
         public DbSet<User> Users { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Match>()
+                .HasOne(m => m.RedTeam)
+                .WithMany(t => t.MatchesAsRedTeam)
+                .HasForeignKey(m => m.RedTeamId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<Match>()
+                .HasOne(m => m.BlueTeam)
+                .WithMany(t => t.MatchesAsBlueTeam)
+                .HasForeignKey(m => m.BlueTeamId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

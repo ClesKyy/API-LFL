@@ -16,16 +16,20 @@ namespace ProjetApiLFL.Controllers
             _teamRepository = teamRepository;
         }
         [HttpPost]
-        public ActionResult CreateTeam(CreateTeamDto teamDto)
+        public ActionResult CreateTeam(List<CreateTeamDto> teamDtos)
         {
-            Team team = new Team
+            List<Team> teamsToCreate = new List<Team>();
+
+            foreach(var team in teamDtos)
             {
-                Name = teamDto.Name,
-                Logo = teamDto.Logo,
+                teamsToCreate.Add(new Team
+                {
+                    Name = team.Name,
+                    Logo = team.Logo
+                });
+            }
 
-            };
-
-            _teamRepository.CreateTeam(team);
+            _teamRepository.CreateManyTeams(teamsToCreate);
             return Ok();
         }
 

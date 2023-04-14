@@ -36,6 +36,22 @@ namespace ProjetApiLFL.Controllers
             return Ok(_userRepository.GetUsers());
 
         }
+        [HttpGet("{userPseudo}")]
+        public ActionResult<IEnumerable<User>> GetTeamByName(string userPseudo)
+        {
+            User user = _userRepository.GetUserByName(userPseudo);
+            if(user == null)
+            {
+                return NotFound();
+            }
+            return Ok(_userRepository.GetUserByName(userPseudo));
+        }
+        [HttpDelete("{userPseudo}")]
+        public ActionResult DeleteUser(string userPseudo)
+        {
+            _userRepository.DeleteUser(userPseudo);
+            return Ok();
+        }
         [HttpPost("signup")]
 
         public async Task<IActionResult> SignUp([FromBody] UserSignUpDto userSignUpDto)

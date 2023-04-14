@@ -6,7 +6,7 @@ using ProjetApiLFL.Models;
 
 namespace ProjetApiLFL.Repositories
 {
-    public class MatchRepository
+    public class MatchRepository : IMatchRepository 
     {
         private readonly LFLDbContext _context;
         public MatchRepository(LFLDbContext context)
@@ -24,7 +24,7 @@ namespace ProjetApiLFL.Repositories
         }
         public List<Match> GetMatches()
         {
-            return _context.Matchs.ToList();
+            return _context.Matchs.Include(m => m.BlueTeam).Include(m => m.RedTeam).ToList();
         }
         public void UpdateMatch(UpdateMatchDto newMatch, int oldMatchId)
         {

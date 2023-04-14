@@ -10,6 +10,7 @@ namespace ProjetApiLFL.Repositories
         List<Player> GetAllByTeamName (string name);
         List<Team> GetTeam();
         void CreateTeam(Team team);
+        void CreateManyTeams(List<Team> teams);
         void UpdateTeam(UpdateTeamDto newTeam, int oldTeamId);
         void DeleteTeam(int id);
     }

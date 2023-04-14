@@ -5,10 +5,10 @@ namespace ProjetApiLFL.Repositories
 {
     public interface IMatchRepository
     {
-        Match GetMatchById(int id);
-        List<Match> GetMatch();
+        //Match GetMatchById(int id);
+        List<Match> GetMatches();
         void CreateMatch(Match match);
-        void UpdateMatch(UpdateMatchDto newMatch, int oldMatchId);
-        void DeleteMatchById(int id);
+        //void UpdateMatch(UpdateMatchDto newMatch, int oldMatchId);
+        //void DeleteMatchById(int id);
     }
 }
