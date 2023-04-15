@@ -16,7 +16,7 @@ namespace ProjetApiLFL.Controllers
             _teamRepository = teamRepository;
         }
         [HttpPost]
-        public ActionResult CreateTeam(List<CreateTeamDto> teamDtos)
+        public ActionResult CreateManyTeams(List<CreateTeamDto> teamDtos)
         {
             List<Team> teamsToCreate = new List<Team>();
 
@@ -25,6 +25,7 @@ namespace ProjetApiLFL.Controllers
                 teamsToCreate.Add(new Team
                 {
                     Name = team.Name,
+                    Label = team.Label,
                     Logo = team.Logo
                 });
             }
