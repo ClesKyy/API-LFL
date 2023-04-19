@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProjetApiLFL.Dtos.Player;
+using ProjetApiLFL.Dtos.Team;
 using ProjetApiLFL.Models;
 using ProjetApiLFL.Repositories;
 
@@ -15,7 +16,7 @@ namespace ProjetApiLFL.Controllers
         {
             _playerRepository = playerRepository;
         }
-        [HttpPost]
+       /* [HttpPost]
         public ActionResult CreatePlayer(CreatePlayerDto playerDto)
         {
             Player player = new Player
@@ -28,6 +29,25 @@ namespace ProjetApiLFL.Controllers
             };
 
             _playerRepository.CreatePlayer(player);
+            return Ok();
+        } */
+        [HttpPost]
+        public ActionResult CreateManyPlayers(List<CreatePlayerDto> playerDtos)
+        {
+            List<Player> playersToCreate = new List<Player>();
+
+            foreach (var player in playerDtos)
+            {
+                playersToCreate.Add(new Player
+                {
+                    TeamId = player.TeamId,
+                    Pseudo = player.Pseudo,
+                    Role = player.Role,
+                    ProfileImg = player.ProfileImg,
+                    RoleIcon = player.RoleIcon,
+                });
+            }
+            _playerRepository.CreateManyPlayers(playersToCreate);
             return Ok();
         }
         [HttpGet("{playerId}")]

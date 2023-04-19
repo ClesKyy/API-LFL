@@ -21,6 +21,11 @@ namespace ProjetApiLFL.Repositories
             _context.Players.Add(player);
             _context.SaveChanges();
         }
+        public void CreateManyPlayers(List<Player> players)
+        {
+            _context.Players.AddRange(players);
+            _context.SaveChanges();
+        }
         public List<Player> GetPlayer()
         {
             return _context.Players.ToList();
