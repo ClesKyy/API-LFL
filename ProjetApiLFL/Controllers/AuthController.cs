@@ -10,6 +10,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using FluentValidation;
+using ProjetApiLFL.Dtos.Player;
 
 namespace ProjetApiLFL.Controllers
 {
@@ -46,6 +47,13 @@ namespace ProjetApiLFL.Controllers
             }
             return Ok(_userRepository.GetUserByName(userPseudo));
         }
+        [HttpPut("{userPseudo}")]
+        public ActionResult UpdatePassword(UpdatePasswordDto userDto, string userPseudo)
+        {
+            _userRepository.UpdatePassword(userDto, userPseudo);
+            return Ok();
+
+        }
         [HttpDelete("{userPseudo}")]
         public ActionResult DeleteUser(string userPseudo)
         {
@@ -79,10 +87,6 @@ namespace ProjetApiLFL.Controllers
 
             return Problem(userCreateResult.Errors.First().Description, null, 400);
         }
-
-
-
-
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] UserLoginDto userLoginDto)
         {

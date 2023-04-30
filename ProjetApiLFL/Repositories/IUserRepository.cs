@@ -1,4 +1,5 @@
-﻿using ProjetApiLFL.Models;
+﻿using ProjetApiLFL.Dtos.User;
+using ProjetApiLFL.Models;
 
 namespace ProjetApiLFL.Repositories
 {
@@ -7,5 +8,6 @@ namespace ProjetApiLFL.Repositories
         List<User> GetUsers();
         User GetUserByName(string pseudo);
         void DeleteUser(string pseudo);
+        void UpdatePassword(UpdatePasswordDto newUser, string pseudo);
     }
 }

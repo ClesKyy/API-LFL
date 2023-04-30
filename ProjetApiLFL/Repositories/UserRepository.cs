@@ -1,4 +1,5 @@
 ﻿using ProjetApiLFL.DbContexts;
+using ProjetApiLFL.Dtos.User;
 using ProjetApiLFL.Models;
 
 namespace ProjetApiLFL.Repositories
@@ -17,6 +18,13 @@ namespace ProjetApiLFL.Repositories
         public User GetUserByName(string pseudo)
         {
             return _context.Users.Where(t => t.Pseudo == pseudo).FirstOrDefault();
+        }
+        public void UpdatePassword(UpdatePasswordDto newUser, string pseudo)
+        {
+            User user = GetUserByName(pseudo);
+            user.Password = newUser.Password;
+            _context.Users.Update(user);
+            _context.SaveChanges();
         }
         public void DeleteUser(string pseudo)
         {
