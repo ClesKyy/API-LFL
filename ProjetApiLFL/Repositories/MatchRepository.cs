@@ -22,6 +22,11 @@ namespace ProjetApiLFL.Repositories
             _context.Matchs.Add(match);
             _context.SaveChanges();
         }
+        public void CreateManyMatches(List<Match> matches)
+        {
+            _context.Matchs.AddRange(matches);
+            _context.SaveChanges();
+        }
         public List<Match> GetMatches()
         {
             return _context.Matchs.Include(m => m.BlueTeam).Include(m => m.RedTeam).ToList();

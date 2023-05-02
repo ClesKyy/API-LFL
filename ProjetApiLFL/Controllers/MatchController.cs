@@ -14,7 +14,7 @@ namespace ProjetApiLFL.Controllers
         {
             _matchRepository = matchRepository;
         }
-        [HttpPost]
+      /*  [HttpPost]
         public ActionResult CreateMatch(CreateMatchDto MatchDto)
         {
             Match match = new Match
@@ -25,6 +25,24 @@ namespace ProjetApiLFL.Controllers
 
             };
             _matchRepository.CreateMatch(match);
+            return Ok();
+        } */
+        [HttpPost]
+        public ActionResult CreateManyMatches(List<CreateMatchDto> MatchDto)
+        {
+            List<Match> matchesToCreate = new List<Match>();
+
+            foreach (var match in MatchDto)
+            {
+                matchesToCreate.Add(new Match
+                {
+                    Date = match.Date,
+                    BlueTeamId = match.BlueTeamId,
+                    RedTeamId = match.RedTeamId,
+
+                });
+            }
+            _matchRepository.CreateManyMatches(matchesToCreate);
             return Ok();
         }
 
