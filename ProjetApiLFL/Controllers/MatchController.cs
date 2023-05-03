@@ -15,56 +15,6 @@ namespace ProjetApiLFL.Controllers
         {
             _matchRepository = matchRepository;
         }
-      /*[HttpPost]
-        public ActionResult CreateMatch(CreateMatchDto MatchDto)
-        {
-            Match match = new Match
-            {
-                Date = MatchDto.Date,
-                BlueTeamId = MatchDto.BlueTeamId,
-                RedTeamId = MatchDto.RedTeamId,
-
-            };
-            _matchRepository.CreateMatch(match);
-            return Ok();
-        }*/
-        [HttpPost]
-        public ActionResult CreateManyMatches(List<CreateMatchDto> MatchDto)
-        {
-            List<Match> matchesToCreate = new List<Match>();
-
-            foreach (var match in MatchDto)
-            {
-                matchesToCreate.Add(new Match
-                {
-                    Date = match.Date,
-                    BlueTeamId = match.BlueTeamId,
-                    RedTeamId = match.RedTeamId,
-
-                });
-            }
-            _matchRepository.CreateManyMatches(matchesToCreate);
-            return Ok();
-        }
-        [HttpGet("{matchId}")]
-
-        public ActionResult<Match> GetMatchById(int matchId)
-        {
-            Match match = _matchRepository.GetMatchById(matchId);
-            if (match == null)
-            {
-                return NotFound();
-            }
-            return Ok(_matchRepository.GetMatchById(matchId));
-        }
-        [HttpPut]
-        public ActionResult UpdateMatch(UpdateMatchDto matchDto, int matchId)
-        {
-            _matchRepository.UpdateMatch(matchDto, matchId);
-            return Ok();
-
-        }
-
         [HttpGet]
         public ActionResult<MatchListDto> GetMatchesList()
         {
@@ -72,7 +22,7 @@ namespace ProjetApiLFL.Controllers
 
             List<MatchDto> matchesList = new List<MatchDto>();
 
-            foreach(var match in matches)
+            foreach (var match in matches)
             {
                 matchesList.Add(new MatchDto
                 {
@@ -97,6 +47,54 @@ namespace ProjetApiLFL.Controllers
                 .ToList();
 
             return Ok(groupedMatches);
+        }
+        [HttpGet("{matchId}")]
+        public ActionResult<Match> GetMatchById(int matchId)
+        {
+            Match match = _matchRepository.GetMatchById(matchId);
+            if (match == null)
+            {
+                return NotFound();
+            }
+            return Ok(_matchRepository.GetMatchById(matchId));
+        }
+        [HttpPost]
+        public ActionResult CreateMatch(CreateMatchDto MatchDto)
+        {
+            Match match = new Match
+            {
+                Date = MatchDto.Date,
+                BlueTeamId = MatchDto.BlueTeamId,
+                RedTeamId = MatchDto.RedTeamId,
+
+            };
+            _matchRepository.CreateMatch(match);
+            return Ok();
+        }
+        [HttpPost("matches")]
+        public ActionResult CreateManyMatches(List<CreateMatchDto> MatchDto)
+        {
+            List<Match> matchesToCreate = new List<Match>();
+
+            foreach (var match in MatchDto)
+            {
+                matchesToCreate.Add(new Match
+                {
+                    Date = match.Date,
+                    BlueTeamId = match.BlueTeamId,
+                    RedTeamId = match.RedTeamId,
+
+                });
+            }
+            _matchRepository.CreateManyMatches(matchesToCreate);
+            return Ok();
+        }
+        [HttpPut("{matchId}")]
+        public ActionResult UpdateMatch(UpdateMatchDto matchDto, int matchId)
+        {
+            _matchRepository.UpdateMatch(matchDto, matchId);
+            return Ok();
+
         }
     }
 }

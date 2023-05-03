@@ -16,22 +16,37 @@ namespace ProjetApiLFL.Controllers
         {
             _playerRepository = playerRepository;
         }
-      /*[HttpPost]
-        public ActionResult CreatePlayer(CreatePlayerDto playerDto)
+        [HttpGet]
+        public ActionResult<IEnumerable<Player>> GetPlayer()
         {
-            Player player = new Player
+            return Ok(_playerRepository.GetPlayer());
+        }
+        [HttpGet("{playerId}")]
+        public ActionResult<Player> GetPlayerById(int playerId)
+        {
+            Player player = _playerRepository.GetPlayerById(playerId);
+            if (player == null)
             {
-                TeamId = playerDto.TeamId,
-                Pseudo = playerDto.Pseudo,
-                Role = playerDto.Role,
-                ProfileImg = playerDto.ProfileImg,
-                RoleIcon = playerDto.RoleIcon,
-            };
-
-            _playerRepository.CreatePlayer(player);
-            return Ok();
-        }*/
+                return NotFound();
+            }
+            return Ok(_playerRepository.GetPlayerById(playerId));
+        }
         [HttpPost]
+          public ActionResult CreatePlayer(CreatePlayerDto playerDto)
+          {
+              Player player = new Player
+              {
+                  TeamId = playerDto.TeamId,
+                  Pseudo = playerDto.Pseudo,
+                  Role = playerDto.Role,
+                  ProfileImg = playerDto.ProfileImg,
+                  RoleIcon = playerDto.RoleIcon,
+              };
+
+              _playerRepository.CreatePlayer(player);
+              return Ok();
+          }
+        [HttpPost("players")]
         public ActionResult CreateManyPlayers(List<CreatePlayerDto> playerDtos)
         {
             List<Player> playersToCreate = new List<Player>();
@@ -50,23 +65,7 @@ namespace ProjetApiLFL.Controllers
             _playerRepository.CreateManyPlayers(playersToCreate);
             return Ok();
         }
-        [HttpGet("{playerId}")]
-
-        public ActionResult<Player> GetPlayerById(int playerId)
-        {
-            Player player = _playerRepository.GetPlayerById(playerId);
-            if(player == null)
-            {
-                return NotFound();
-            }
-            return Ok(_playerRepository.GetPlayerById(playerId));
-        }
-        [HttpGet]
-        public ActionResult<IEnumerable<Player>> GetPlayer()
-        {
-            return Ok(_playerRepository.GetPlayer());
-        }
-        [HttpPut]
+        [HttpPut("{playerId}")]
         public ActionResult UpdatePlayer(UpdatePlayerDto playerDto, int playerId)
         {
             _playerRepository.UpdatePlayer(playerDto, playerId);

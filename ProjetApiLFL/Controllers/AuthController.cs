@@ -47,19 +47,6 @@ namespace ProjetApiLFL.Controllers
             }
             return Ok(_userRepository.GetUserByName(userPseudo));
         }
-        [HttpPut("{userPseudo}")]
-        public ActionResult UpdatePassword(UpdatePasswordDto userDto, string userPseudo)
-        {
-            _userRepository.UpdatePassword(userDto, userPseudo);
-            return Ok();
-
-        }
-        [HttpDelete("{userPseudo}")]
-        public ActionResult DeleteUser(string userPseudo)
-        {
-            _userRepository.DeleteUser(userPseudo);
-            return Ok();
-        }
         [HttpPost("signup")]
 
         public async Task<IActionResult> SignUp([FromBody] UserSignUpDto userSignUpDto)
@@ -75,7 +62,7 @@ namespace ProjetApiLFL.Controllers
                 UserName = userSignUpDto.Pseudo,
                 Password = userSignUpDto.Password,
                 Email = userSignUpDto.Email,
-               
+
             };
             var userCreateResult = await _userManager.CreateAsync(user, userSignUpDto.Password);
             if (userCreateResult.Succeeded)
@@ -83,7 +70,7 @@ namespace ProjetApiLFL.Controllers
                 return Created(string.Empty, string.Empty);
             }
 
-           // await _userManager.AddToRoleAsync(user, "User");
+            // await _userManager.AddToRoleAsync(user, "User");
 
             return Problem(userCreateResult.Errors.First().Description, null, 400);
         }
@@ -91,7 +78,7 @@ namespace ProjetApiLFL.Controllers
         public async Task<IActionResult> Login([FromBody] UserLoginDto userLoginDto)
         {
             var user = _userManager.Users.SingleOrDefault(u => u.Pseudo == userLoginDto.Pseudo);
-            if(user == null)
+            if (user == null)
             {
                 return NotFound("L'utilisateur n'existe pas");
             }
@@ -106,6 +93,20 @@ namespace ProjetApiLFL.Controllers
             }
             return BadRequest("Mot de passe incorrect");
         }
+        [HttpPut("{userPseudo}")]
+        public ActionResult UpdatePassword(UpdatePasswordDto userDto, string userPseudo)
+        {
+            _userRepository.UpdatePassword(userDto, userPseudo);
+            return Ok();
+
+        }
+        [HttpDelete("{userPseudo}")]
+        public ActionResult DeleteUser(string userPseudo)
+        {
+            _userRepository.DeleteUser(userPseudo);
+            return Ok();
+        }
+   
         private string GenerateJwt(User user, IList<string> roles)
         {
             var claims = new List<Claim>

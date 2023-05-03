@@ -15,31 +15,12 @@ namespace ProjetApiLFL.Controllers
         {
             _teamRepository = teamRepository;
         }
-        [HttpPost]
-        public ActionResult CreateManyTeams(List<CreateTeamDto> teamDtos)
+        [HttpGet]
+        public ActionResult<IEnumerable<Team>> GetTeamByOrder()
         {
-            List<Team> teamsToCreate = new List<Team>();
-
-            foreach(var team in teamDtos)
-            {
-                teamsToCreate.Add(new Team
-                {
-                    Name = team.Name,
-                    Label = team.Label,
-                    Logo = team.Logo
-                });
-            }
-
-            _teamRepository.CreateManyTeams(teamsToCreate);
-            return Ok();
+            return Ok(_teamRepository.GetTeam());
         }
-
-         [HttpGet]
-         public ActionResult<IEnumerable<Team>> GetTeamByOrder()
-         {
-             return Ok(_teamRepository.GetTeam());
-         } 
-        [HttpGet ("order")]
+        [HttpGet("order")]
         public ActionResult<IEnumerable<Team>> GetTeam()
         {
             var teams = _teamRepository.GetTeam().OrderBy(t => t.Position);
@@ -56,7 +37,6 @@ namespace ProjetApiLFL.Controllers
             return Ok(_teamRepository.GetTeamByName(teamName));
         }
         [HttpGet("{teamName}/player")]
-
         public ActionResult<IEnumerable<Player>> GetAllByTeamName(string teamName)
         {
             var team = _teamRepository.GetTeamByName(teamName);
@@ -68,7 +48,24 @@ namespace ProjetApiLFL.Controllers
             .Where(p => p.TeamId == team.TeamId);
             return Ok(players);
         }
-        [HttpPut]
+        [HttpPost("teams")]
+        public ActionResult CreateManyTeams(List<CreateTeamDto> teamDtos)
+        {
+            List<Team> teamsToCreate = new List<Team>();
+
+            foreach(var team in teamDtos)
+            {
+                teamsToCreate.Add(new Team
+                {
+                    Name = team.Name,
+                    Label = team.Label,
+                    Logo = team.Logo
+                });
+            }
+            _teamRepository.CreateManyTeams(teamsToCreate);
+            return Ok();
+        }
+        [HttpPut("{teamId}")]
         public ActionResult UpdateTeam(UpdateTeamDto teamDto, int teamId)
         {
             _teamRepository.UpdateTeam(teamDto, teamId);
