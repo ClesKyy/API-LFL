@@ -16,7 +16,7 @@ namespace ProjetApiLFL.Controllers
         {
             _playerRepository = playerRepository;
         }
-       /* [HttpPost]
+      /*[HttpPost]
         public ActionResult CreatePlayer(CreatePlayerDto playerDto)
         {
             Player player = new Player
@@ -30,7 +30,7 @@ namespace ProjetApiLFL.Controllers
 
             _playerRepository.CreatePlayer(player);
             return Ok();
-        } */
+        }*/
         [HttpPost]
         public ActionResult CreateManyPlayers(List<CreatePlayerDto> playerDtos)
         {

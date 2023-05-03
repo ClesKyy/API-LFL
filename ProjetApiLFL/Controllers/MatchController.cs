@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProjetApiLFL.Dtos.Match;
+using ProjetApiLFL.Dtos.Player;
 using ProjetApiLFL.Models;
 using ProjetApiLFL.Repositories;
 
@@ -14,7 +15,7 @@ namespace ProjetApiLFL.Controllers
         {
             _matchRepository = matchRepository;
         }
-      /*  [HttpPost]
+      /*[HttpPost]
         public ActionResult CreateMatch(CreateMatchDto MatchDto)
         {
             Match match = new Match
@@ -26,7 +27,7 @@ namespace ProjetApiLFL.Controllers
             };
             _matchRepository.CreateMatch(match);
             return Ok();
-        } */
+        }*/
         [HttpPost]
         public ActionResult CreateManyMatches(List<CreateMatchDto> MatchDto)
         {
@@ -44,6 +45,24 @@ namespace ProjetApiLFL.Controllers
             }
             _matchRepository.CreateManyMatches(matchesToCreate);
             return Ok();
+        }
+        [HttpGet("{matchId}")]
+
+        public ActionResult<Match> GetMatchById(int matchId)
+        {
+            Match match = _matchRepository.GetMatchById(matchId);
+            if (match == null)
+            {
+                return NotFound();
+            }
+            return Ok(_matchRepository.GetMatchById(matchId));
+        }
+        [HttpPut]
+        public ActionResult UpdateMatch(UpdateMatchDto matchDto, int matchId)
+        {
+            _matchRepository.UpdateMatch(matchDto, matchId);
+            return Ok();
+
         }
 
         [HttpGet]
@@ -68,7 +87,7 @@ namespace ProjetApiLFL.Controllers
             }
 
             var groupedMatches = matchesList
-            .OrderByDescending(m => m.MatchDate)
+            .OrderBy(m => m.MatchDate)
                 .GroupBy(m => m.MatchDate.Value.Date)
                 .Select(g => new MatchListDto
                 {

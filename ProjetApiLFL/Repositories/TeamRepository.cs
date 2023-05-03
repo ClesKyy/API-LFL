@@ -47,6 +47,7 @@ namespace ProjetApiLFL.Repositories
             team.Label = newTeam.Label;
             team.Win = newTeam.Win;
             team.Lose = newTeam.Lose;
+            team.Position = newTeam.Position;
 
             _context.Teams.Update(team);
             _context.SaveChanges();

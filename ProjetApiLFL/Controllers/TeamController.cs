@@ -34,10 +34,16 @@ namespace ProjetApiLFL.Controllers
             return Ok();
         }
 
-        [HttpGet]
+         [HttpGet]
+         public ActionResult<IEnumerable<Team>> GetTeamByOrder()
+         {
+             return Ok(_teamRepository.GetTeam());
+         } 
+        [HttpGet ("order")]
         public ActionResult<IEnumerable<Team>> GetTeam()
         {
-            return Ok(_teamRepository.GetTeam());
+            var teams = _teamRepository.GetTeam().OrderBy(t => t.Position);
+            return Ok(teams);
         }
         [HttpGet("{teamName}")]
         public ActionResult<Team> GetTeamByName(string teamName)
