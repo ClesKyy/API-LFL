@@ -37,7 +37,7 @@ namespace ProjetApiLFL.Controllers
             }
 
             var groupedMatches = matchesList
-            .OrderBy(m => m.MatchDate)
+            .OrderByDescending(m => m.MatchDate)
                 .GroupBy(m => m.MatchDate.Value.Date)
                 .Select(g => new MatchListDto
                 {

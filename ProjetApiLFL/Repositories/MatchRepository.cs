@@ -34,7 +34,8 @@ namespace ProjetApiLFL.Repositories
         public void UpdateMatch(UpdateMatchDto newMatch, int oldMatchId)
         {
             Match match = GetMatchById(oldMatchId);
-            match.Date = newMatch.Date;
+            match.BlueScore = newMatch.BlueTeamScore;
+            match.RedScore = newMatch.RedTeamScore;
 
             _context.Matchs.Update(match);
             _context.SaveChanges();

@@ -2,6 +2,8 @@
 {
     public class UpdateMatchDto
     {
-        public DateTime Date { get; set; }
+        public int BlueTeamScore { get; set; }
+        public int RedTeamScore { get; set; }
+
     }
 }

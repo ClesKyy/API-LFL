@@ -44,7 +44,7 @@ namespace ProjetApiLFL.Repositories
          public void UpdateTeam(UpdateTeamDto newTeam, int oldTeamId)
         {
             Team team = GetTeamById(oldTeamId);
-            team.Label = newTeam.Label;
+            team.Games = newTeam.Games;
             team.Win = newTeam.Win;
             team.Lose = newTeam.Lose;
             team.Position = newTeam.Position;
