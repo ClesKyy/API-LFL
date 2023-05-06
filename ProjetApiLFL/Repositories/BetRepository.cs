@@ -4,7 +4,7 @@ using ProjetApiLFL.Models;
 
 namespace ProjetApiLFL.Repositories
 {
-    public class BetRepository
+    public class BetRepository : IBetRepository 
     {
         private readonly LFLDbContext _context;
         public BetRepository(LFLDbContext context)

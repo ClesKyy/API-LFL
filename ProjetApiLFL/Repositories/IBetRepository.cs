@@ -9,7 +9,7 @@ namespace ProjetApiLFL.Repositories
         List<Bet> GetBet();
         void CreateBet(Bet bet);
         void UpdateBet(UpdateBetDto newBet, int oldBetId);
-        void DeleteBetById(int id);
+        void DeleteBet(int id);
 
     }
 }

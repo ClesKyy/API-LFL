@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjetApiLFL.DbContexts;
 
@@ -11,9 +12,10 @@ using ProjetApiLFL.DbContexts;
 namespace ProjetApiLFL.Migrations
 {
     [DbContext(typeof(LFLDbContext))]
-    partial class LFLDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230505134617_Add user id ")]
+    partial class Adduserid
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -146,8 +148,9 @@ namespace ProjetApiLFL.Migrations
                     b.Property<int>("TeamId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("BetId");
 
@@ -304,17 +307,11 @@ namespace ProjetApiLFL.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<int>("Games")
-                        .HasColumnType("int");
-
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
-
-                    b.Property<int>("Lose")
-                        .HasColumnType("int");
 
                     b.Property<int>("NbBet")
                         .HasColumnType("int");
@@ -359,12 +356,6 @@ namespace ProjetApiLFL.Migrations
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
-
-                    b.Property<int>("Win")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Winrate")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

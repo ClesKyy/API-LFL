@@ -50,6 +50,7 @@ builder.Services.AddScoped<IPlayerRepository, PlayerRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ITeamRepository, TeamRepository>();
 builder.Services.AddScoped<IMatchRepository, MatchRepository>();
+builder.Services.AddScoped<IBetRepository, BetRepository>();
 
 builder.Services.AddDbContext<LFLDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 

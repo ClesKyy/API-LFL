@@ -20,13 +20,11 @@ namespace ProjetApiLFL.Controllers
     {
         private readonly IUserRepository _userRepository;
         private readonly UserManager<User> _userManager;
-        private readonly RoleManager<Role> _roleManager;
         private readonly IOptionsSnapshot<JwtSettings> _jwtSettings;
         private readonly IValidator<UserSignUpDto> _validator;
-        public AuthController(UserManager<User> userManager, RoleManager<Role> roleManager, IOptionsSnapshot<JwtSettings> jwtSettings, IUserRepository userRepository, IValidator<UserSignUpDto> validator)
+        public AuthController(UserManager<User> userManager, IOptionsSnapshot<JwtSettings> jwtSettings, IUserRepository userRepository, IValidator<UserSignUpDto> validator)
         {
             _userManager = userManager;
-            _roleManager = roleManager;
             _jwtSettings = jwtSettings;
             _userRepository = userRepository;
             _validator = validator;
@@ -69,8 +67,6 @@ namespace ProjetApiLFL.Controllers
             {
                 return Created(string.Empty, string.Empty);
             }
-
-            // await _userManager.AddToRoleAsync(user, "User");
 
             return Problem(userCreateResult.Errors.First().Description, null, 400);
         }
