@@ -1,4 +1,5 @@
-﻿using ProjetApiLFL.DbContexts;
+﻿using Microsoft.AspNetCore.Identity;
+using ProjetApiLFL.DbContexts;
 using ProjetApiLFL.Dtos.User;
 using ProjetApiLFL.Models;
 
@@ -7,9 +8,11 @@ namespace ProjetApiLFL.Repositories
     public class UserRepository: IUserRepository
     {
         private readonly LFLDbContext _context;
-        public UserRepository(LFLDbContext context)
+        private readonly UserManager<User> _userManager;
+        public UserRepository(LFLDbContext context, UserManager<User> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
         public List<User> GetUsers()
         {
@@ -19,12 +22,32 @@ namespace ProjetApiLFL.Repositories
         {
             return _context.Users.Where(t => t.Pseudo == pseudo).FirstOrDefault();
         }
-        public void UpdatePassword(UpdatePasswordDto newUser, string pseudo)
+        public void UpdatePassword(UpdatePasswordDto userDto, string userPseudo)
         {
-            User user = GetUserByName(pseudo);
-            user.Password = newUser.Password;
-            _context.Users.Update(user);
-            _context.SaveChanges();
+            var user = _context.Users.SingleOrDefault(u => u.Pseudo == userPseudo);
+
+            if (user != null)
+            {
+                var passwordValidator = new PasswordValidator<User>();
+                var result = passwordValidator.ValidateAsync(_userManager, user, userDto.NewPassword).Result;
+
+                if (!result.Succeeded)
+                {
+                    throw new Exception("Nouveau mot de passe invalide.");
+                }
+
+                var token = _userManager.GeneratePasswordResetTokenAsync(user).Result;
+                var resetResult = _userManager.ResetPasswordAsync(user, token, userDto.NewPassword).Result;
+
+                if (!resetResult.Succeeded)
+                {
+                    throw new Exception("La mise à jour du mot de passe a échoué.");
+                }
+            }
+            else
+            {
+                throw new Exception("Utilisateur introuvable.");
+            }
         }
         public void DeleteUser(string pseudo)
         {

@@ -10,7 +10,6 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using FluentValidation;
-using ProjetApiLFL.Dtos.Player;
 
 namespace ProjetApiLFL.Controllers
 {
@@ -90,11 +89,19 @@ namespace ProjetApiLFL.Controllers
             return BadRequest("Mot de passe incorrect");
         }
         [HttpPut("{userPseudo}")]
-        public ActionResult UpdatePassword(UpdatePasswordDto userDto, string userPseudo)
+        public async Task<ActionResult> UpdatePassword(UpdatePasswordDto updatePasswordDto, string userPseudo)
         {
-            _userRepository.UpdatePassword(userDto, userPseudo);
-            return Ok();
-
+            var user = _userManager.Users.SingleOrDefault(u => u.Pseudo == userPseudo);
+            if (user == null)
+            {
+                return NotFound("L'utilisateur n'existe pas");
+            }
+            var changePasswordResult = await _userManager.ChangePasswordAsync(user, updatePasswordDto.OldPassword, updatePasswordDto.NewPassword);
+            if (changePasswordResult.Succeeded)
+            {
+                return Ok();
+            }
+            return BadRequest(changePasswordResult.Errors.First().Description);
         }
         [HttpDelete("{userPseudo}")]
         public ActionResult DeleteUser(string userPseudo)
