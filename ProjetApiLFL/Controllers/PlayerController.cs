@@ -77,6 +77,11 @@ namespace ProjetApiLFL.Controllers
             _playerRepository.DeletePlayer(playerId);
             return Ok();
         }
-
+        [HttpDelete("all")]
+        public ActionResult DeleteAllPlayers()
+        {
+            _playerRepository.DeleteAllPlayers();
+            return Ok();
+        }
     }
 }
