@@ -77,5 +77,11 @@ namespace ProjetApiLFL.Controllers
             _teamRepository.DeleteTeam(teamId);
             return Ok();
         }
+        [HttpDelete("all")]
+        public ActionResult DeleteAllTeams()
+        {
+            _teamRepository.DeleteAllTeams();
+            return Ok();
+        }
     }
 }
