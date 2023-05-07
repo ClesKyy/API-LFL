@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ProjetApiLFL.Dtos.Player;
 using ProjetApiLFL.Dtos.Team;
 using ProjetApiLFL.Models;
 using ProjetApiLFL.Repositories;
@@ -71,6 +70,12 @@ namespace ProjetApiLFL.Controllers
             _teamRepository.UpdateTeam(teamDto, teamId);
             return Ok();
 
+        }
+        [HttpDelete("{teamId}")]
+        public ActionResult DeleteTeam(int teamId)
+        {
+            _teamRepository.DeleteTeam(teamId);
+            return Ok();
         }
     }
 }

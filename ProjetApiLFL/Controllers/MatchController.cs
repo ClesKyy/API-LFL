@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProjetApiLFL.Dtos.Match;
-using ProjetApiLFL.Dtos.Player;
 using ProjetApiLFL.Models;
 using ProjetApiLFL.Repositories;
 
