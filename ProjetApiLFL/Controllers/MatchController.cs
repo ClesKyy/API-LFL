@@ -101,5 +101,11 @@ namespace ProjetApiLFL.Controllers
             _matchRepository.DeleteMatch(matchId);
             return Ok();
         }
+        [HttpDelete("all")]
+        public ActionResult DeleteAllMatches()
+        {
+            _matchRepository.DeleteAllMatches();
+            return Ok();
+        }
     }
 }

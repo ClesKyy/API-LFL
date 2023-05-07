@@ -11,5 +11,6 @@ namespace ProjetApiLFL.Repositories
         void CreateManyMatches(List<Match> matches);
         void UpdateMatch(UpdateMatchDto newMatch, int oldMatchId);
         void DeleteMatch(int id);
+        void DeleteAllMatches();
     }
 }

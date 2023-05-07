@@ -46,7 +46,11 @@ namespace ProjetApiLFL.Repositories
             _context.Matchs.Remove(match);
             _context.SaveChanges();
         }
-    }
-    
-    
+        public void DeleteAllMatches()
+        {
+            var matches = _context.Matchs.ToList();
+            _context.Matchs.RemoveRange(matches);
+            _context.SaveChanges();
+        }
+    }    
 }
