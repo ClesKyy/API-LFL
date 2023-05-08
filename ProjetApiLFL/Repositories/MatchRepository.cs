@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProjetApiLFL.DbContexts;
-using ProjetApiLFL.Dtos.Bet;
 using ProjetApiLFL.Dtos.Match;
 using ProjetApiLFL.Models;
 

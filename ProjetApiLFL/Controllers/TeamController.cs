@@ -57,7 +57,6 @@ namespace ProjetApiLFL.Controllers
                 teamsToCreate.Add(new Team
                 {
                     Name = team.Name,
-                    Label = team.Label,
                     Logo = team.Logo
                 });
             }

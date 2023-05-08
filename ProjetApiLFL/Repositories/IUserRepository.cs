@@ -6,8 +6,8 @@ namespace ProjetApiLFL.Repositories
     public interface IUserRepository
     {
         List<User> GetUsers();
-        User GetUserByName(string pseudo);
-        void DeleteUser(string pseudo);
-        void UpdatePassword(UpdatePasswordDto newUser, string pseudo);
+        User GetUserByName(string name);
+        void DeleteUser(string name);
+        void UpdatePassword(UpdatePasswordDto newUser, string name);
     }
 }
