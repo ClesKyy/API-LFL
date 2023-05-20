@@ -257,10 +257,6 @@ namespace ProjetApiLFL.Migrations
                     b.Property<int>("Games")
                         .HasColumnType("int");
 
-                    b.Property<string>("Label")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Logo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -316,6 +312,10 @@ namespace ProjetApiLFL.Migrations
                     b.Property<int>("Lose")
                         .HasColumnType("int");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("NbBet")
                         .HasColumnType("int");
 
@@ -339,10 +339,6 @@ namespace ProjetApiLFL.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
-
-                    b.Property<string>("Pseudo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Score")
                         .HasColumnType("int");

@@ -18,13 +18,13 @@ namespace ProjetApiLFL.Repositories
         {
             return _context.Users.ToList();
         }
-        public User GetUserByName(string pseudo)
+        public User GetUserByName(string name)
         {
-            return _context.Users.Where(t => t.Pseudo == pseudo).FirstOrDefault();
+            return _context.Users.Where(t => t.Name == name).FirstOrDefault();
         }
-        public void UpdatePassword(UpdatePasswordDto userDto, string userPseudo)
+        public void UpdatePassword(UpdatePasswordDto userDto, string userName)
         {
-            var user = _context.Users.SingleOrDefault(u => u.Pseudo == userPseudo);
+            var user = _context.Users.SingleOrDefault(u => u.Name == userName);
 
             if (user != null)
             {
@@ -49,9 +49,9 @@ namespace ProjetApiLFL.Repositories
                 throw new Exception("Utilisateur introuvable.");
             }
         }
-        public void DeleteUser(string pseudo)
+        public void DeleteUser(string name)
         {
-            User user = GetUserByName(pseudo);
+            User user = GetUserByName(name);
             _context.Users.Remove(user);
             _context.SaveChanges();
         }

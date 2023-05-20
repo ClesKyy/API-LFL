@@ -34,15 +34,15 @@ namespace ProjetApiLFL.Controllers
             return Ok(_userRepository.GetUsers());
 
         }
-        [HttpGet("{userPseudo}")]
-        public ActionResult<IEnumerable<User>> GetTeamByName(string userPseudo)
+        [HttpGet("{userName}")]
+        public ActionResult<IEnumerable<User>> GetTeamByName(string userName)
         {
-            User user = _userRepository.GetUserByName(userPseudo);
+            User user = _userRepository.GetUserByName(userName);
             if(user == null)
             {
                 return NotFound();
             }
-            return Ok(_userRepository.GetUserByName(userPseudo));
+            return Ok(_userRepository.GetUserByName(userName));
         }
         [HttpPost("signup")]
 
@@ -55,8 +55,8 @@ namespace ProjetApiLFL.Controllers
             }
             var user = new User
             {
-                Pseudo = userSignUpDto.Pseudo,
-                UserName = userSignUpDto.Pseudo,
+                Name = userSignUpDto.Name,
+                UserName = userSignUpDto.Name,
                 Password = userSignUpDto.Password,
                 Email = userSignUpDto.Email,
 
@@ -72,7 +72,7 @@ namespace ProjetApiLFL.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] UserLoginDto userLoginDto)
         {
-            var user = _userManager.Users.SingleOrDefault(u => u.Pseudo == userLoginDto.Pseudo);
+            var user = _userManager.Users.SingleOrDefault(u => u.Name == userLoginDto.Name);
             if (user == null)
             {
                 return NotFound("L'utilisateur n'existe pas");
@@ -88,10 +88,10 @@ namespace ProjetApiLFL.Controllers
             }
             return BadRequest("Mot de passe incorrect");
         }
-        [HttpPut("{userPseudo}")]
-        public async Task<ActionResult> UpdatePassword(UpdatePasswordDto updatePasswordDto, string userPseudo)
+        [HttpPut("{userName}")]
+        public async Task<ActionResult> UpdatePassword(UpdatePasswordDto updatePasswordDto, string userName)
         {
-            var user = _userManager.Users.SingleOrDefault(u => u.Pseudo == userPseudo);
+            var user = _userManager.Users.SingleOrDefault(u => u.Name == userName);
             if (user == null)
             {
                 return NotFound("L'utilisateur n'existe pas");
@@ -103,10 +103,10 @@ namespace ProjetApiLFL.Controllers
             }
             return BadRequest(changePasswordResult.Errors.First().Description);
         }
-        [HttpDelete("{userPseudo}")]
-        public ActionResult DeleteUser(string userPseudo)
+        [HttpDelete("{userName}")]
+        public ActionResult DeleteUser(string userName)
         {
-            _userRepository.DeleteUser(userPseudo);
+            _userRepository.DeleteUser(userName);
             return Ok();
         }
    

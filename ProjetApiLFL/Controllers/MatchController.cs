@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProjetApiLFL.Dtos.Match;
-using ProjetApiLFL.Dtos.Player;
 using ProjetApiLFL.Models;
 using ProjetApiLFL.Repositories;
 
@@ -95,6 +94,18 @@ namespace ProjetApiLFL.Controllers
             _matchRepository.UpdateMatch(matchDto, matchId);
             return Ok();
 
+        }
+        [HttpDelete("{matchId}")]
+        public ActionResult DeleteMatch(int matchId)
+        {
+            _matchRepository.DeleteMatch(matchId);
+            return Ok();
+        }
+        [HttpDelete("all")]
+        public ActionResult DeleteAllMatches()
+        {
+            _matchRepository.DeleteAllMatches();
+            return Ok();
         }
     }
 }

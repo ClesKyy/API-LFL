@@ -45,5 +45,11 @@ namespace ProjetApiLFL.Repositories
             _context.Players.Remove(player);
             _context.SaveChanges();
         }
+        public void DeleteAllPlayers()
+        {
+            var players = _context.Players.ToList();
+            _context.Players.RemoveRange(players);
+            _context.SaveChanges();
+        }
     }
 }

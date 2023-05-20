@@ -11,5 +11,6 @@ namespace ProjetApiLFL.Repositories
         void CreateManyPlayers(List<Player> players);
         void UpdatePlayer(UpdatePlayerDto newPlayer, int oldPlayerId);
         void DeletePlayer(int id);
+        void DeleteAllPlayers();
     }
 }

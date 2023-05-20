@@ -7,7 +7,7 @@
     {
         public UserSignUpDtoValidator()
         {
-            RuleFor(dto => dto.Pseudo).NotEmpty();
+            RuleFor(dto => dto.Name).NotEmpty();
             RuleFor(dto => dto.Password).NotEmpty();
             RuleFor(dto => dto.Email).NotEmpty().EmailAddress();
         }

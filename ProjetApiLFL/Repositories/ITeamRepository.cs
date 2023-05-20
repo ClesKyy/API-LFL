@@ -13,5 +13,6 @@ namespace ProjetApiLFL.Repositories
         void CreateManyTeams(List<Team> teams);
         void UpdateTeam(UpdateTeamDto newTeam, int oldTeamId);
         void DeleteTeam(int id);
+        void DeleteAllTeams();
     }
 }

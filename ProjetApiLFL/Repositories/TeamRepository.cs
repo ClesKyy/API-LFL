@@ -57,6 +57,12 @@ namespace ProjetApiLFL.Repositories
             Team team = GetTeamById(teamId);
             _context.Teams.Remove(team);
             _context.SaveChanges();
-        } 
+        }
+        public void DeleteAllTeams()
+        {
+            var teams = _context.Teams.ToList();
+            _context.Teams.RemoveRange(teams);
+            _context.SaveChanges();
+        }
     } 
 }
